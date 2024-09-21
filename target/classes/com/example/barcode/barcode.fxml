@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="727.0" prefWidth="1103.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.barcode.BarcodeController">
+   <children>
+      <SplitPane dividerPositions="0.4032697547683924" layoutX="452.0" layoutY="181.0" prefHeight="727.0" prefWidth="1103.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.4827109266943292" layoutX="166.0" layoutY="202.0" orientation="VERTICAL" prefHeight="725.0" prefWidth="439.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TextField fx:id="nameOfModel" layoutX="139.0" layoutY="52.0" prefHeight="39.0" prefWidth="284.0" />
+                              <Text layoutX="24.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ім'я моделі:" wrappingWidth="142.205078125" />
+                              <ComboBox fx:id="comBoxForBrand" layoutX="139.0" layoutY="126.0" prefHeight="39.0" prefWidth="284.0" />
+                              <ComboBox fx:id="comBoxForType" layoutX="139.0" layoutY="201.0" prefHeight="39.0" prefWidth="284.0" />
+                              <Text layoutX="20.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Бренди:" wrappingWidth="110.205078125" />
+                              <Text layoutX="24.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип:" wrappingWidth="102.205078125" />
+                              <Button layoutX="20.0" layoutY="277.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="39.0" prefWidth="171.0" text="Зберегти" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.7602179836512262" orientation="VERTICAL" prefHeight="369.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <TextArea fx:id="textArea" prefHeight="239.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <Button layoutY="60.0" mnemonicParsing="false" onAction="#decodeItem" prefHeight="118.0" prefWidth="435.0" text="Декодування" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="673.0" prefWidth="652.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="725.0" prefWidth="652.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <ImageView fx:id="imageView" fitHeight="350.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="650.0">
+                           <children>
+                              <SplitPane dividerPositions="0.751412429378531" layoutX="245.0" layoutY="95.0" orientation="VERTICAL" prefHeight="356.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <TableView fx:id="tableView" layoutX="178.0" layoutY="-14.0" prefHeight="211.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="177.0" prefWidth="648.0">
+                                       <children>
+                                          <Button layoutX="13.0" layoutY="104.0" mnemonicParsing="false" onAction="#checkActualDevices" prefHeight="133.0" prefWidth="648.0" text="Переглянути девайси" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
