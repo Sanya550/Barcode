@@ -46,7 +46,6 @@ public class BarcodeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //default brands and types
         var brands = FXCollections.observableArrayList(Brand.getAllBrands());
         comBoxForBrand.setItems(brands);
         comBoxForBrand.setValue(brands.get(0));
@@ -55,7 +54,6 @@ public class BarcodeController implements Initializable {
         comBoxForType.setItems(types);
         comBoxForType.setValue(types.get(0));
 
-        //remove all files from root directory and create png files from codes using db
         deleteFilesInFolder(ROOT_DIRECTORY);
         for (var dbDevice : dbService.getDevices()) {
             try {
@@ -65,7 +63,6 @@ public class BarcodeController implements Initializable {
             }
         }
 
-        //column values for tableView
         TableColumn<Device, Integer> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         idColumn.setPrefWidth(50);

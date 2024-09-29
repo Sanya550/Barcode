@@ -4,14 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BarcodeHelper {
-    // Таблица кодирования символов для Code 39
     private static final Map<Character, String> CODE_39_MAP = new HashMap<>();
 
     static {
@@ -63,10 +61,9 @@ public class BarcodeHelper {
         CODE_39_MAP.put('+', "010001010");
         CODE_39_MAP.put('%', "000101010");
 
-        CODE_39_MAP.put('*', "010010100"); // Start/Stop символ
+        CODE_39_MAP.put('*', "010010100");
     }
 
-    // Метод для генерации штрих-кода
     public static StringBuilder generateBarcode(String text) {
         StringBuilder barcodePattern = new StringBuilder();
         barcodePattern.append(CODE_39_MAP.get('*'));
@@ -79,25 +76,20 @@ public class BarcodeHelper {
             }
         }
 
-        // Добавляем стоп-символ '*'
         barcodePattern.append(CODE_39_MAP.get('*'));
         return barcodePattern;
     }
 
     public static void saveBarcode(String fullPathAndName, StringBuilder barcodePattern) throws IOException {
-        // Размер изображения
         int width = barcodePattern.length() * 2;
         int height = 100;
 
-        // Создаем изображение
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = image.createGraphics();
 
-        // Заливка фона белым цветом
         g2d.setPaint(Color.WHITE);
         g2d.fillRect(0, 0, width, height);
 
-        // Рисуем штрих-код
         int x = 0;
         for (char bit : barcodePattern.toString().toCharArray()) {
             Color color = bit == '1' ? Color.BLACK : Color.WHITE;
@@ -114,18 +106,15 @@ public class BarcodeHelper {
     public static String decodeBarcode(String path) {
         try {
             var image = ImageIO.read(new File(path));
-            // Получаем ширину изображения (количество битов штрих-кода)
             int width = image.getWidth();
-            int height = image.getHeight();
 
             StringBuilder barcodeBits = new StringBuilder();
 
-            // Считываем изображение, получая биты (черный = 1, белый = 0)
-            for (int x = 0; x < width; x += 2) { // Шаг 2, так как каждая линия — 2 пикселя
-                int pixelColor = image.getRGB(x, 0); // Берем пиксель сверху изображения
+
+            for (int x = 0; x < width; x += 2) {
+                int pixelColor = image.getRGB(x, 0);
                 Color color = new Color(pixelColor);
 
-                // Если пиксель черный, добавляем 1, если белый - 0
                 if (color.equals(Color.BLACK)) {
                     barcodeBits.append('1');
                 } else {
@@ -133,20 +122,16 @@ public class BarcodeHelper {
                 }
             }
 
-            // Теперь у нас есть строка из битов штрих-кода
+
             String bits = barcodeBits.toString();
 
-            // Декодируем биты в символы, используя карту CODE_39_MAP
             StringBuilder decodedText = new StringBuilder();
             for (int i = 0; i <= bits.length() - 9; i += 9) {
                 String bitSegment = bits.substring(i, i + 9);
 
-                // Находим соответствующий символ в CODE_39_MAP
                 for (Map.Entry<Character, String> entry : CODE_39_MAP.entrySet()) {
                     if (entry.getValue().equals(bitSegment)) {
                         char decodedChar = entry.getKey();
-
-                        // Пропускаем старт/стоп символ '*' при декодировании
                         if (decodedChar != '*') {
                             decodedText.append(decodedChar);
                         }
